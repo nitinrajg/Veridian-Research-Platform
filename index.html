@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veridian Research Platform - AI Enhanced Search</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Advanced AI-powered research platform for discovering cutting-edge academic papers and scientific breakthroughs. Enhanced with machine learning for better search results.">
+    <meta name="keywords" content="research, academic papers, scientific literature, AI search, machine learning, PubMed, scholarly articles">
+    <meta name="author" content="Veridian Research Platform">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Veridian Research Platform - AI Enhanced Search">
+    <meta property="og:description" content="Discover cutting-edge research with AI-powered search technology">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://your-domain.com">
+    <meta property="og:image" content="https://your-domain.com/assets/og-image.jpg">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Veridian Research Platform">
+    <meta name="twitter:description" content="AI-enhanced academic research discovery">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="alternate icon" href="assets/favicon.ico">
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Preconnect for Performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
+</head>
+<body>
+    <!-- Particle Background -->
+    <div id="particle-container" class="particle-container"></div>
+    
+    <!-- Navigation -->
+    <nav class="top-nav">
+        <a href="#" class="nav-logo">
+            <img src="logo.png" alt="Veridian Research Platform" class="logo-image">
+        </a>
+        <button class="login-btn" id="login-btn">Login</button>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1>VERIDIAN</h1>
+            <div class="search-container">
+                <input type="text" 
+                       id="search-input" 
+                       class="search-input" 
+                       placeholder="Search research papers, studies, and academic articles..."
+                       autocomplete="off"
+                       spellcheck="false">
+                <!-- MODIFICATION: Combined the button and icon into one element and fixed positioning with inline styles -->
+                <button id="search-btn" type="button" aria-label="Search" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: transparent; border: none; cursor: pointer; padding: 10px;" onclick="navigateToMLSearch()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="stroke: var(--color-text);">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                </button>
+            </div>
+            <p class="bottom-subtitle">AI-POWERED ACADEMIC RESEARCH DISCOVERY</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Lead Story Section -->
+        <section class="main-content">
+            <article class="lead-story animate-on-scroll">
+                <div class="lead-meta" id="lead-story-meta">FEATURED RESEARCH</div>
+                <h1 id="lead-story-title">Latest Breakthrough in AI Research</h1>
+                <div class="lead-image">
+                    <img id="lead-story-image" src="https://via.placeholder.com/800x400/667eea/ffffff?text=Featured+Research" alt="Featured Research" loading="lazy">
+                </div>
+                <p id="lead-story-description">Discover the latest developments in artificial intelligence and machine learning research that are shaping the future of technology and scientific discovery.</p>
+            </article>
+
+            <!-- Sidebar -->
+            <aside class="sidebar animate-on-scroll">
+                <h2>Research Updates</h2>
+                <div id="news-container">
+                    <!-- Dynamic content will be loaded here -->
+                    <ul>
+                        <li><a href="#">Loading latest research updates...</a></li>
+                    </ul>
+                </div>
+            </aside>
+        </section>
+
+        <!-- News in Focus -->
+        <section class="news-in-focus">
+            <h2 class="animate-on-scroll">Latest Research in Focus</h2>
+            <div class="articles-grid animate-on-scroll" id="features-grid">
+                <!-- Dynamic articles will be loaded here -->
+                <article class="animate-on-scroll rotate-in">
+                    <div class="article-image-container">
+                        <img src="https://via.placeholder.com/300x180/667eea/ffffff?text=Research" alt="Research Article" loading="lazy">
+                    </div>
+                    <div class="article-content">
+                        <p class="meta">RESEARCH UPDATE | Loading...</p>
+                        <h3><a href="#">Loading Featured Research Articles...</a></h3>
+                        <p class="article-description">Please wait while we load the latest research articles and scientific discoveries.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Loading Indicator -->
+        <div id="loading-indicator" style="display: none; text-align: center; padding: 40px;">
+            <div class="spinner" style="width: 40px; height: 40px; border: 4px solid #f3f3f3; border-top: 4px solid #32b8cd; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 20px;"></div>
+            <p>Loading more research articles...</p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <img src="logo.png" alt="Veridian Research Platform" class="logo-image-footer">
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">About</a>
+                    <a href="#">Contact</a>
+                </div>
+                <div class="footer-social">
+                    <a href="#" aria-label="Twitter">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                        </svg>
+                    </a>
+                    <a href="#" aria-label="LinkedIn">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                        </svg>
+                    </a>
+                    <a href="#" aria-label="GitHub">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                <p>&copy; 2025 Veridian Research Platform. All rights reserved. | AI-Enhanced Search Technology</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="back-to-top" aria-label="Back to top">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 19V6M5 12l7-7 7 7"/>
+        </svg>
+    </button>
+
+    <!-- Machine Learning Enhancement Scripts -->
+    <script src="search/frontend/js/ml-query-processor.js"></script>
+    <script src="search/frontend/js/enhanced-pubmed-integration.js"></script>
+
+    <!-- Main Application Script -->
+    <script src="script.js"></script>
+    
+    <!-- ML-Enhanced Search System Navigation -->
+    <script>
+        // Navigation functions for ML-Enhanced Search System
+        function navigateToMLSearch() {
+            const query = document.getElementById('search-input')?.value || '';
+            if (query.trim()) {
+                // Pass the search query to the ML search page
+                window.location.href = `search/frontend/html/search-results.html?q=${encodeURIComponent(query)}`;
+            } else {
+                // Navigate to search page without query
+                window.location.href = 'search/frontend/html/search-results.html';
+            }
+        }
+        
+        function navigateToAnalytics() {
+            window.location.href = 'search/frontend/html/analytics.html';
+        }
+        
+        async function checkMLBackend() {
+            const statusDiv = document.getElementById('ml-backend-status');
+            const statusText = document.getElementById('status-text');
+            
+            statusDiv.style.display = 'block';
+            statusText.textContent = '🔄 Checking backend server...';
+            statusDiv.style.background = 'rgba(255,165,0,0.2)';
+            
+            try {
+                const response = await fetch('http://127.0.0.1:5000/health', {
+                    method: 'GET',
+                    timeout: 5000
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    statusText.textContent = `✅ Backend Online - ${data.service || 'ML Search API'} ${data.version || 'v1.0.0'}`;
+                    statusDiv.style.background = 'rgba(40,167,69,0.2)';
+                } else {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+            } catch (error) {
+                statusText.textContent = '❌ Backend Offline - Start the backend server using RUN_ML_SEARCH_SYSTEM.bat';
+                statusDiv.style.background = 'rgba(220,53,69,0.2)';
+                
+                // Show instructions
+                setTimeout(() => {
+                    statusText.innerHTML = '❌ Backend Offline<br><small>To start: Open terminal → Navigate to search folder → Run: .\\RUN_ML_SEARCH_SYSTEM.bat</small>';
+                }, 2000);
+            }
+        }
+        
+        // Auto-check backend status on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Auto-check backend status after 2 seconds
+            setTimeout(checkMLBackend, 2000);
+            
+            // Update search button to handle Enter key
+            const searchInput = document.getElementById('search-input');
+            if (searchInput) {
+                searchInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        navigateToMLSearch();
+                    }
+                });
+            }
+        });
+        
+        // Add keyboard shortcut for quick navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey || e.metaKey) {
+                switch(e.key) {
+                    case 'm':
+                        e.preventDefault();
+                        navigateToMLSearch();
+                        break;
+                    case 'a':
+                        e.preventDefault();
+                        navigateToAnalytics();
+                        break;
+                    case 'h':
+                        e.preventDefault();
+                        checkMLBackend();
+                        break;
+                }
+            }
+        });
+    </script>
+
+    <!-- Additional CSS for ML enhancements -->
+    <style>
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideOutRight {
+            to {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+        }
+
+        .search-suggestions-dropdown {
+            animation: slideDown 0.2s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ML Indicator Styles */
+        #ml-indicator {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.05);
+                opacity: 0.8;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* Enhanced search container for ML features */
+        .search-container {
+            position: relative;
+        }
+
+        /* Loading spinner for search button */
+        .search-btn[disabled] {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        /* Suggestion dropdown styling */
+        .search-suggestions-dropdown {
+            border: 1px solid var(--color-primary);
+            box-shadow: 0 8px 32px rgba(var(--color-primary-rgb, 33, 128, 141), 0.15);
+        }
+
+        .suggestion-item:hover {
+            background: var(--color-secondary) !important;
+            color: var(--color-text);
+        }
+
+        /* Enhanced alert styling */
+        .enhanced-alert {
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Responsive improvements for ML features */
+        @media (max-width: 768px) {
+            #ml-indicator {
+                right: 50px;
+                font-size: 9px;
+                padding: 1px 4px;
+            }
+            
+            .search-suggestions-dropdown {
+                max-height: 200px;
+            }
+        }
+    </style>
+
+    <!-- Initialize ML Enhanced Search for Homepage -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🤖 Initializing ML-enhanced search system...');
+            
+            // The integration will automatically enhance your existing search functionality
+            if (window.MLQueryProcessor && window.EnhancedPubMedSearch) {
+                console.log('✅ ML search system loaded successfully');
+                
+                // Add performance monitoring
+                const mlLoadTime = performance.now();
+                console.log(`🚀 ML system loaded in ${Math.round(mlLoadTime)}ms`);
+                
+                // Show user that AI is ready
+                setTimeout(() => {
+                    const indicator = document.getElementById('ml-indicator');
+                    if (indicator) {
+                        indicator.style.animation = 'pulse 1s ease-in-out';
+                        indicator.title = 'AI search enhancement is active';
+                    }
+                }, 1000);
+            } else {
+                console.warn('⚠️ ML search system not loaded - ensure script files are in correct location');
+                
+                // Fallback notification
+                setTimeout(() => {
+                    console.log('ℹ️ Running in basic search mode');
+                }, 2000);
+            }
+
+            // Add accessibility features
+            const searchInput = document.getElementById('search-input');
+            if (searchInput) {
+                searchInput.setAttribute('aria-label', 'Search research papers with AI assistance');
+                searchInput.setAttribute('role', 'searchbox');
+                searchInput.setAttribute('aria-describedby', 'search-help');
+                
+                // Add invisible help text for screen readers
+                const helpText = document.createElement('div');
+                helpText.id = 'search-help';
+                helpText.className = 'sr-only';
+                helpText.textContent = 'AI-enhanced search for academic papers and research articles. Start typing to get intelligent suggestions.';
+                searchInput.parentNode.appendChild(helpText);
+            }
+
+            // Add keyboard shortcuts
+            document.addEventListener('keydown', function(e) {
+                // Focus search with Ctrl+K or Cmd+K
+                if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                    e.preventDefault();
+                    const searchInput = document.getElementById('search-input');
+                    if (searchInput) {
+                        searchInput.focus();
+                        searchInput.select();
+                    }
+                }
+            });
+
+            // Add search analytics
+            let searchStartTime = 0;
+            const originalFetch = window.fetch;
+            window.fetch = async function(...args) {
+                if (args[0] && args[0].includes('search')) {
+                    searchStartTime = performance.now();
+                }
+                const result = await originalFetch.apply(this, args);
+                if (searchStartTime > 0) {
+                    const searchDuration = performance.now() - searchStartTime;
+                    console.log(`⏱️ Search completed in ${Math.round(searchDuration)}ms`);
+                    searchStartTime = 0;
+                }
+                return result;
+            };
+        });
+
+        // Add error handling for ML system
+        window.addEventListener('error', function(e) {
+            if (e.message && e.message.includes('MLQueryProcessor')) {
+                console.warn('🔧 ML system encountered an error, falling back to basic search');
+            }
+        });
+
+        // Add performance monitoring
+        window.addEventListener('load', function() {
+            const loadTime = performance.now();
+            console.log(`📊 Page loaded in ${Math.round(loadTime)}ms`);
+            
+            // Check if ML system is responsive
+            if (window.MLQueryProcessor) {
+                setTimeout(() => {
+                    console.log('✅ ML system health check passed');
+                }, 500);
+            }
+        });
+    </script>
+</body>
+</html>

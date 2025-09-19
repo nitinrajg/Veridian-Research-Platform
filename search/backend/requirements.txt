@@ -1,0 +1,32 @@
+# ML-Enhanced Search Backend Dependencies
+
+# Web Framework (essential)
+flask>=2.3.0
+flask-cors>=4.0.0
+
+# HTTP Client (lightweight alternative)
+requests>=2.31.0
+
+# Data Processing
+python-dateutil>=2.8.0
+
+# Logging (already in standard library)
+# logging
+
+# JSON (already in standard library)
+# json
+
+# Regular Expressions (already in standard library) 
+# re
+
+# XML Processing (already in standard library)
+# xml.etree.ElementTree
+
+# Type Hints (standard in Python 3.5+)
+# typing
+
+# Async Programming (standard in Python 3.7+)
+# asyncio
+
+# Date/Time (already in standard library)
+# datetime

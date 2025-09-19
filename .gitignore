@@ -1,0 +1,353 @@
+# Veridian Research Platform - .gitignore
+# =====================================
+
+# Python
+# ------
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Python distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Python virtual environments
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+.venv/
+pipenv/
+Pipfile.lock
+
+# Python testing
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+.coverage
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+
+# Flask specific
+instance/
+.webassets-cache
+
+# Analytics & Data Files (Backend)
+# --------------------------------
+search/data/
+search/backend/analytics_data/
+search/backend/cache/
+search/backend/logs/
+*.log
+*.sqlite
+*.sqlite3
+*.db
+
+# ML Query History & Analytics
+ml_query_history.json
+query_analytics.json
+search_history.json
+analytics_*.json
+performance_*.json
+
+# Node.js / JavaScript (if using build tools)
+# -------------------------------------------
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Frontend build files (if using bundlers)
+/dist/
+/build/
+/.next/
+/out/
+
+# IDE and Editor files
+# -------------------
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Windows system files
+desktop.ini
+$RECYCLE.BIN/
+
+# macOS system files
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Linux system files
+*~
+.directory
+.Trash-*
+
+# Temporary files
+# ---------------
+*.tmp
+*.temp
+temp/
+tmp/
+.temp/
+.tmp/
+
+# Backup files
+*.bak
+*.backup
+*.old
+*~
+
+# Environment files
+# -----------------
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.*
+
+# Configuration files with secrets
+config.json
+secrets.json
+api_keys.json
+credentials.json
+
+# Server & Deployment
+# -------------------
+*.pid
+*.seed
+*.pid.lock
+.nyc_output
+
+# Docker
+Dockerfile.dev
+docker-compose.override.yml
+.dockerignore
+
+# Logs and monitoring
+# ------------------
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.npm
+.eslintcache
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage/
+lcov.info
+
+# nyc test coverage
+.nyc_output
+
+# Dependency directories
+jspm_packages/
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Microbundle cache
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# parcel-bundler cache (https://parceljs.org/)
+.cache
+.parcel-cache
+
+# Research Platform Specific
+# --------------------------
+
+# Generated API documentation
+api_docs/
+docs/build/
+
+# Search results cache
+search_cache/
+*.search_cache
+
+# PubMed API cache
+pubmed_cache/
+*.pubmed
+
+# ML model files (if any)
+models/
+*.model
+*.pickle
+*.pkl
+
+# Performance monitoring
+performance/
+metrics/
+*.metrics
+
+# User uploaded files (if any)
+uploads/
+user_data/
+
+# Generated reports
+reports/
+*.report
+
+# Frontend assets (generated)
+assets/generated/
+assets/optimized/
+
+# Batch script logs (Windows)
+*.bat.log
+batch_output.txt
+
+# Development databases
+dev.db
+development.sqlite
+test.db
+
+# Session files
+sessions/
+*.session
+
+# Certificate files
+*.pem
+*.key
+*.crt
+*.cert
+
+# Archive files
+*.zip
+*.tar
+*.tar.gz
+*.rar
+*.7z
+
+# Large media files (unless essential)
+*.mp4
+*.avi
+*.mov
+*.mkv
+*.flv
+
+# System generated files
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Thumbnails
+ehthumbs.db
+ehthumbs_vista.db
+
+# JetBrains IDEs
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Atom
+.atom/
+
+# Visual Studio Code
+.vscode/
+*.code-workspace
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# Vim
+[._]*.s[a-v][a-z]
+[._]*.sw[a-p]
+[._]s[a-rt-v][a-z]
+[._]ss[a-gi-z]
+[._]sw[a-p]
+*.un~
+Session.vim
+.netrwhist
+
+# Project specific exclusions
+# ---------------------------
+
+# Don't ignore essential assets
+!assets/header-bg.jpg
+!logo.png
+!system-architext.png
+
+# Keep important documentation
+!search/docs/README.md
+!search/docs/HOW_TO_RUN.txt
+
+# Keep essential scripts
+!scripts/*.bat
+!RUN_ML_SEARCH_SYSTEM.bat
+
+# Keep requirements files
+!requirements.txt
+!search/backend/requirements.txt
+
+# Keep example/template files
+!*.example
+!*.template
+!*.sample

@@ -1,0 +1,56 @@
+=======================================
+🚀 HOW TO RUN THE ML-ENHANCED SEARCH SYSTEM
+=======================================
+
+📁 You are here: C:\Users\vishw\Desktop\project 6(nitin)\search\
+
+🎯 QUICK START (Recommended):
+1. Double-click: run_complete_system.bat
+   → This will do everything automatically!
+
+📋 ALTERNATIVE METHODS:
+
+Method 1 - Full Setup:
+1. Double-click: start_ml_backend.bat
+2. Open your HTML file in a web browser
+
+Method 2 - Quick Start (if already set up):
+1. Double-click: quick_start.bat
+2. Open your HTML file in a web browser
+
+Method 3 - Complete Workflow:
+1. Double-click: run_complete_system.bat
+   → Installs dependencies
+   → Starts backend server  
+   → Opens website automatically
+
+🧪 TESTING:
+- Double-click: test_backend.bat
+  → Tests if the backend is working
+
+🌐 OPEN WEBSITE:
+- Double-click: open_website.bat
+  → Opens your HTML files with backend check
+
+📊 WHAT RUNS:
+✅ Python Backend Server on http://127.0.0.1:5000
+✅ Your website with ML enhancements
+✅ Analytics tracking
+✅ Automatic fallback if backend fails
+
+🔧 REQUIREMENTS:
+- Windows 10/11
+- Python 3.7+ (will be checked automatically)
+- Internet connection (for first-time setup)
+
+⚠️ IMPORTANT:
+- Keep the "ML Backend Server" window open while using the website
+- The website will work even if the backend is closed (local fallback)
+
+🆘 TROUBLE?
+1. Make sure Python is installed: python --version
+2. Run as Administrator if needed
+3. Check Windows Firewall settings
+4. Try different port: edit batch files and change 5000 to 8080
+
+🎉 ENJOY YOUR ENHANCED SEARCH EXPERIENCE!

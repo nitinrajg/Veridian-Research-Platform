@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ML Analytics Dashboard - Veridian Research Platform</title>
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="../css/analytics.css">
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/date-fns@2.29.3/index.min.js"></script>
+</head>
+<body>
+    <!-- Analytics Container -->
+    <div class="analytics-container">
+        <!-- Back Button -->
+        <a href="search-results.html" class="back-button">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M19 12H5M12 19l-7-7 7-7"/>
+            </svg>
+            Back to Search
+        </a>
+
+        <!-- Header -->
+        <div class="analytics-header">
+            <h1>ML Analytics Dashboard</h1>
+            <p>Real-time performance metrics and insights for AI-enhanced search</p>
+            <div class="real-time-indicator">
+                <div class="pulse-dot"></div>
+                Live Data
+            </div>
+        </div>
+
+        <!-- Controls Section -->
+        <div class="controls-section">
+            <div class="controls-grid">
+                <div class="control-group">
+                    <label class="control-label" for="timeRange">Time Range</label>
+                    <select id="timeRange" class="control-input">
+                        <option value="1h">Last Hour</option>
+                        <option value="24h" selected>Last 24 Hours</option>
+                        <option value="7d">Last 7 Days</option>
+                        <option value="30d">Last 30 Days</option>
+                    </select>
+                </div>
+                
+                <div class="control-group">
+                    <label class="control-label" for="metricType">Metric Type</label>
+                    <select id="metricType" class="control-input">
+                        <option value="all" selected>All Metrics</option>
+                        <option value="performance">Performance</option>
+                        <option value="accuracy">Accuracy</option>
+                        <option value="engagement">User Engagement</option>
+                    </select>
+                </div>
+                
+                <div class="control-group">
+                    <button id="refreshData" class="control-button">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/>
+                            <path d="M21 3v5h-5"/>
+                            <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/>
+                            <path d="M3 21v-5h5"/>
+                        </svg>
+                        Refresh Data
+                    </button>
+                </div>
+                
+                <div class="control-group">
+                    <button id="exportData" class="control-button">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                            <polyline points="7,10 12,15 17,10"/>
+                            <line x1="12" y1="15" x2="12" y2="3"/>
+                        </svg>
+                        Export Report
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Metrics Grid -->
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-header">
+                    <div class="metric-icon">⚡</div>
+                    <h3 class="metric-title">Average Response Time</h3>
+                </div>
+                <div class="metric-value" id="avgResponseTime">Loading...</div>
+                <div class="metric-change neutral" id="responseTimeChange">
+                    <span>Calculating trends...</span>
+                </div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-header">
+                    <div class="metric-icon">🎯</div>
+                    <h3 class="metric-title">ML Enhancement Rate</h3>
+                </div>
+                <div class="metric-value" id="enhancementRate">Loading...</div>
+                <div class="metric-change neutral" id="enhancementChange">
+                    <span>Processing data...</span>
+                </div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-header">
+                    <div class="metric-icon">📈</div>
+                    <h3 class="metric-title">Search Confidence</h3>
+                </div>
+                <div class="metric-value" id="avgConfidence">Loading...</div>
+                <div class="metric-change neutral" id="confidenceChange">
+                    <span>Analyzing confidence...</span>
+                </div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-header">
+                    <div class="metric-icon">👥</div>
+                    <h3 class="metric-title">Success Rate</h3>
+                </div>
+                <div class="metric-value" id="userEngagement">Loading...</div>
+                <div class="metric-change neutral" id="engagementChange">
+                    <span>Measuring engagement...</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts Section -->
+        <div class="charts-section">
+            <div class="chart-container">
+                <h3 class="chart-title">
+                    📊 Response Time Trend
+                </h3>
+                <canvas id="responseTimeChart"></canvas>
+            </div>
+
+            <div class="chart-container">
+                <h3 class="chart-title">
+                    🎯 ML Enhancement Distribution
+                </h3>
+                <canvas id="enhancementChart"></canvas>
+            </div>
+
+            <div class="chart-container full-width-chart">
+                <h3 class="chart-title">
+                    📈 Search Quality Metrics Over Time
+                </h3>
+                <canvas id="qualityChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Recent Searches Analysis -->
+        <div class="data-table">
+            <h3 class="chart-title">
+                🔍 Recent Search Analytics
+            </h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Timestamp</th>
+                            <th>Query</th>
+                            <th>ML Enhanced</th>
+                            <th>Response Time</th>
+                            <th>Confidence</th>
+                            <th>Results</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="searchDataTable">
+                        <tr>
+                            <td colspan="7" style="text-align: center; padding: 40px; color: #6b7280;">
+                                <div class="loading-state">
+                                    <div class="loading-spinner"></div>
+                                    <p>Loading search analytics data...</p>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- ML Insights Panel -->
+        <div class="ml-insights-panel" id="mlInsightsPanel" style="display: none;">
+            <h3>AI Search Insights</h3>
+            <div class="insights-grid">
+                <div class="insight-card">
+                    <h4>Query Processing</h4>
+                    <p id="queryProcessingInsight">Analyzing query patterns...</p>
+                </div>
+                <div class="insight-card">
+                    <h4>Search Performance</h4>
+                    <p id="performanceInsight">Evaluating response times...</p>
+                </div>
+                <div class="insight-card">
+                    <h4>ML Accuracy</h4>
+                    <p id="accuracyInsight">Measuring enhancement effectiveness...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Stats -->
+        <div class="quick-stats">
+            <div class="stat-item">
+                <span class="stat-label">Total Searches Today</span>
+                <span class="stat-value" id="totalSearchesToday">0</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">ML Success Rate</span>
+                <span class="stat-value" id="mlSuccessRate">0%</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">Avg Query Length</span>
+                <span class="stat-value" id="avgQueryLength">0 words</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">Peak Usage Hour</span>
+                <span class="stat-value" id="peakHour">--:--</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="loading-content">
+            <div class="loading-spinner large"></div>
+            <h3>Initializing Analytics Dashboard</h3>
+            <p>Loading ML performance data...</p>
+        </div>
+    </div>
+
+    <!-- Custom Styles for Enhanced UI -->
+    <style>
+        /* Enhanced Loading States */
+        .loading-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .loading-spinner {
+            width: 32px;
+            height: 32px;
+            border: 3px solid var(--color-border);
+            border-top: 3px solid var(--color-primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        .loading-spinner.large {
+            width: 48px;
+            height: 48px;
+            border-width: 4px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Loading Overlay */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .loading-overlay.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loading-content {
+            text-align: center;
+            padding: 40px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            max-width: 400px;
+        }
+
+        /* ML Insights Panel */
+        .ml-insights-panel {
+            background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%);
+            border: 2px solid #10b981;
+            border-radius: 16px;
+            padding: 24px;
+            margin: 24px 0;
+        }
+
+        .insights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .insight-card {
+            background: white;
+            padding: 16px;
+            border-radius: 8px;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+
+        .insight-card h4 {
+            color: #059669;
+            margin: 0 0 8px 0;
+            font-size: 14px;
+        }
+
+        .insight-card p {
+            margin: 0;
+            color: #374151;
+            font-size: 13px;
+        }
+
+        /* Quick Stats */
+        .quick-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-top: 24px;
+            padding: 24px;
+            background: var(--color-surface);
+            border-radius: 16px;
+            border: 1px solid var(--color-border);
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 16px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, rgba(50, 184, 205, 0.1), rgba(16, 185, 129, 0.1));
+        }
+
+        .stat-label {
+            display: block;
+            font-size: 12px;
+            color: var(--color-text-secondary);
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .stat-value {
+            display: block;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--color-primary);
+        }
+
+        /* Table Enhancements */
+        .table-container {
+            overflow-x: auto;
+            border-radius: 8px;
+        }
+
+        /* Responsive Improvements */
+        @media (max-width: 768px) {
+            .analytics-container {
+                padding: 16px;
+            }
+            
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .charts-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .controls-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .quick-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Enhanced Animations */
+        .metric-card {
+            animation: fadeInUp 0.6s ease-out forwards;
+            opacity: 0;
+        }
+
+        .metric-card:nth-child(1) { animation-delay: 0.1s; }
+        .metric-card:nth-child(2) { animation-delay: 0.2s; }
+        .metric-card:nth-child(3) { animation-delay: 0.3s; }
+        .metric-card:nth-child(4) { animation-delay: 0.4s; }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+
+    <!-- Scripts -->
+    <script src="../js/analytics_script.js"></script>
+</body>
+</html>
