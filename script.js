@@ -31,14 +31,14 @@ document.addEventListener('DOMContentLoaded', function() {
           }
           
           // Navigate to search results page with query parameter
-          const targetUrl = 'search/search-results.html?q=' + encodeURIComponent(query);
+          const targetUrl = 'search/frontend/html/search-results.html?q=' + encodeURIComponent(query);
           console.log('Navigating to:', targetUrl);
           window.location.href = targetUrl;
           
         } catch (error) {
           console.error('ML processing failed, using basic search:', error);
           // Fallback to basic search
-          const targetUrl = 'search/search-results.html?q=' + encodeURIComponent(query);
+          const targetUrl = 'search/frontend/html/search-results.html?q=' + encodeURIComponent(query);
           window.location.href = targetUrl;
         } finally {
           // Restore button (though page will navigate away)
@@ -213,13 +213,13 @@ function setupAutocomplete(searchInput) {
 
 // --- Firebase Config ---
 const firebaseConfig = {
-  apiKey: "AIzaSyAPYnY1xd2d1leUH5gZMI5DQLVs4IHWyJI",
-  authDomain: "research-it-auth.firebaseapp.com",
-  projectId: "research-it-auth",
-  storageBucket: "research-it-auth.appspot.com",
-  messagingSenderId: "582978351290",
-  appId: "1:582978351290:web:2e5e0089bd44a423a45283",
-  measurementId: "G-HT6WX036QK"
+  apiKey: "",
+  authDomain: "",
+  projectId: "",
+  storageBucket: "",
+  messagingSenderId: "",
+  appId: "",
+  measurementId: ""
 };
 
 // Initialize Firebase safely
@@ -537,7 +537,7 @@ async function fetchNews(page = 1) {
     loadingIndicator.style.display = 'block';
   }
 
-  const apiKey = "c023ae4961a31a02129a02fbaf40e503";
+  const apiKey = ""; //gnews api
   const query = "AI research";
   const url = `https://gnews.io/api/v4/search?q="${query}"&lang=en&max=10&page=${page}&token=${apiKey}`;
 
