@@ -194,17 +194,13 @@ gunicorn -w 4 -b 0.0.0.0:5000 api_server:app
 export API_BASE_URL="https://your-domain.com"
 ```
 
-### Docker Deployment
-```dockerfile
-FROM python:3.9-slim
+### Alternative Deployment Options
+```bash
+# Using systemd service (Linux)
+sudo systemctl start veridian-backend
 
-WORKDIR /app
-COPY search/ .
-
-RUN pip install -r requirements.txt
-
-EXPOSE 5000
-CMD ["python", "api_server.py", "--host", "0.0.0.0"]
+# Using PM2 (Node.js process manager)
+pm2 start search/backend/api_server.py --interpreter python3
 ```
 
 ## 📈 Performance Considerations

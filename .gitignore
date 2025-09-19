@@ -147,10 +147,6 @@ credentials.json
 *.pid.lock
 .nyc_output
 
-# Docker
-Dockerfile.dev
-docker-compose.override.yml
-.dockerignore
 
 # Logs and monitoring
 # ------------------

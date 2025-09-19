@@ -326,9 +326,8 @@ pip install gunicorn
 cd search/backend
 gunicorn -w 4 -b 0.0.0.0:5000 api_server:app
 
-# Using Docker
-docker build -t veridian-backend .
-docker run -p 5000:5000 veridian-backend
+# Using a WSGI server (recommended for production)
+# Ensure all dependencies are installed first
 
 # Static frontend deployment
 # Deploy index.html, script.js, style.css to web server

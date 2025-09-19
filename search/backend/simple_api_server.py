@@ -350,7 +350,7 @@ if __name__ == '__main__':
     logger.info("Press Ctrl+C to stop the server")
     
     app.run(
-        host='127.0.0.1',
+        host='0.0.0.0',
         port=5000,
         debug=False,
         threaded=True
